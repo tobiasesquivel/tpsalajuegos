@@ -1,0 +1,78 @@
+.form{
+    display: flex;
+    padding: 5%;
+    flex-direction: column;
+}
+
+.titulo{
+    color: var(--color-primario);
+    text-align: center;
+    font-size: 2.8rem;
+}
+
+.titulo::after{
+    border: 1px solid var(--color-secundario);
+    content: "";
+    display: block;
+    width: 80%;
+    margin: 0.2rem auto 2rem auto;
+}
+
+.seccion-input{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+.input-texto{
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid rgba(0, 0, 0, 0.231);
+    border-radius: 6px;
+}
+
+.input-texto.error {
+    border-color: #f44336;
+}
+
+.error-message {
+    color: #f44336;
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
+}
+
+.error-mensaje {
+    background-color: #ffebee;
+    color: #f44336;
+    padding: 1rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.btn-enviar{
+    border: none;
+    font-size:inherit;
+    color: var(--fondo);
+    background-color: var(--color-primario);
+    padding: 0.5rem;
+    border-radius: 10px;
+}
+
+.btn-enviar:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.texto-cuenta{
+    margin-bottom: 1rem;
+}
+
+ /* deberia de venir puesto ya? */
+/* .btn-registrarse:hover{
+    cursor: pointer;
+} */
+
+label {
+    display: none;
+}

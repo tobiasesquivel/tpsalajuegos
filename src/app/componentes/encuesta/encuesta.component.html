@@ -1,0 +1,48 @@
+<div class="encuesta-panel card">
+  <div class="card-header">
+    <h2 class="titulo-juego">Encuesta</h2>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="encuestaForm" (ngSubmit)="onSubmit()">
+      <div class="dato-usuario">
+        <label>Nombre y Apellido:</label>
+        <input formControlName="nombre_apellido" type="text" class="form-control" required>
+      </div>
+      <div class="dato-usuario">
+        <label>Edad:</label>
+        <input formControlName="edad" type="number" class="form-control" required>
+      </div>
+      <div class="dato-usuario">
+        <label>Teléfono:</label>
+        <input formControlName="telefono" type="text" class="form-control" required>
+      </div>
+      <div class="dato-usuario" formGroupName="preguntas">
+        <label>{{ preguntasOpciones[0].label }}</label>
+        <div>
+          <label *ngFor="let op of preguntasOpciones[0].opciones">
+            <input type="radio" [value]="op" formControlName="preguntas"> {{ op }}
+          </label>
+        </div>
+      </div>
+      <div class="dato-usuario" formGroupName="preguntas">
+        <label>{{ preguntasOpciones[1].label }}</label>
+        <div>
+          <label *ngFor="let op of preguntasOpciones[1].opciones">
+            <input type="checkbox" [value]="op" (change)="onCheckboxChange($event)"> {{ op }}
+          </label>
+        </div>
+      </div>
+      <div class="dato-usuario" formGroupName="preguntas">
+        <label>{{ preguntasOpciones[2].label }}</label>
+        <select formControlName="horas" class="form-control">
+          <option value="" disabled selected>Selecciona una opción</option>
+          <option *ngFor="let op of preguntasOpciones[2].opciones" [value]="op">{{ op }}</option>
+        </select>
+      </div>
+      <button class="btn btn-success" type="submit" [disabled]="cargando">
+        {{ cargando ? 'Enviando...' : 'Enviar' }}
+      </button>
+      <div *ngIf="mensaje" class="resultado" style="margin-top:12px;">{{ mensaje }}</div>
+    </form>
+  </div>
+</div> 

@@ -1,0 +1,13 @@
+<div class="contenedor panel">
+
+    <div class="seccion-select">
+        <p>Seleccione su juego</p>
+        <select name="juegos" id="juegos" class="select-juegos" [value]="juegoSeleccionado" (change)="onJuegoChange($event)">
+            <option *ngFor="let juego of juegos" [value]="juego.value">{{ juego.label }}</option>
+        </select>
+    </div>
+        
+    
+    <app-puntajes-tabla [puntajes]="puntajes" [cargando]="cargando"></app-puntajes-tabla>
+
+</div>

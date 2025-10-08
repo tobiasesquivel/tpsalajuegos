@@ -1,0 +1,24 @@
+<div class="layout">
+    <header class="header">
+    <nav>
+    <ul class="nav-bar">
+        <a routerLink="juegos">Juegos</a>
+        <a routerLink="chat">Chat</a>
+        <a routerLink="puntajes">Puntajes</a>
+        <a routerLink="quien-soy">¿Quien soy?</a>
+        <a routerLink="encuesta">Encuesta</a>
+        <a routerLink="usuario">Usuario</a>
+        <a *ngIf="esAdmin" routerLink="respuestas-encuesta">Respuestas Encuesta</a>
+        <a (click)="logout()" style="cursor:pointer;">Log out</a>
+    </ul>
+    </nav>
+    </header>
+
+    <div class="container full-height">
+        <router-outlet></router-outlet>
+    </div>
+
+    <footer>
+        <p>Todos los derechos reservados</p>
+    </footer>
+</div>

@@ -1,0 +1,13 @@
+<div [formGroup]="formulario" class="seccion-input">
+  <label [for]="controlName">{{ label }}</label>
+  <input
+    [placeholder]="placeHolder"
+    [formControlName]="controlName"
+    [type]="type"
+    [name]="controlName"
+    [id]="controlName"
+    class="input-texto"
+    [class.error]="formulario.get(controlName)?.invalid && formulario.get(controlName)?.touched"
+  />
+  <span class="error-message" *ngIf="errorMessage">{{ errorMessage }}</span>
+</div>

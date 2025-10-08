@@ -1,0 +1,50 @@
+<div class="mayor-menor-container">
+  <div class="mayor-menor-header">
+    <h2>Mayor o Menor</h2>
+  </div>
+
+  <div class="mayor-menor-content">
+    <div class="cartas-container">
+      <!-- Carta anterior -->
+      <div class="carta" *ngIf="(mayorMenorService.estadoJuego$ | async)?.cartaAnterior">
+        <div class="carta-texto" [class.rojo]="(mayorMenorService.estadoJuego$ | async)?.cartaAnterior?.palo === '♥' || (mayorMenorService.estadoJuego$ | async)?.cartaAnterior?.palo === '♦'">
+          {{ (mayorMenorService.estadoJuego$ | async)?.cartaAnterior?.texto }}
+        </div>
+      </div>
+
+      <!-- Carta actual -->
+      <div class="carta" *ngIf="(mayorMenorService.estadoJuego$ | async)?.cartaActual">
+        <div class="carta-texto" [class.rojo]="(mayorMenorService.estadoJuego$ | async)?.cartaActual?.palo === '♥' || (mayorMenorService.estadoJuego$ | async)?.cartaActual?.palo === '♦'">
+          {{ (mayorMenorService.estadoJuego$ | async)?.cartaActual?.texto }}
+        </div>
+      </div>
+    </div>
+
+    <!-- Mensaje del juego -->
+    <div class="mensaje-juego">
+      {{ (mayorMenorService.estadoJuego$ | async)?.mensaje }}
+    </div>
+
+    <!-- Puntaje -->
+    <div class="puntaje">
+      Puntaje: {{ (mayorMenorService.estadoJuego$ | async)?.puntaje }}
+    </div>
+
+    <!-- Botones de juego -->
+    <div class="botones-juego" *ngIf="!(mayorMenorService.estadoJuego$ | async)?.juegoTerminado">
+      <button class="btn-juego btn-mayor" (click)="mayorMenorService.adivinar(true)">
+        Mayor
+      </button>
+      <button class="btn-juego btn-menor" (click)="mayorMenorService.adivinar(false)">
+        Menor
+      </button>
+    </div>
+
+    <!-- Botón de nuevo juego -->
+    <div class="nuevo-juego" *ngIf="(mayorMenorService.estadoJuego$ | async)?.juegoTerminado">
+      <button class="btn-nuevo-juego" (click)="mayorMenorService.iniciarJuego()">
+        Jugar de nuevo
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<div class="tabla-puntajes">
+  <div *ngIf="cargando" class="cargando">Cargando puntajes...</div>
+  <table *ngIf="!cargando">
+    <thead>
+      <tr>
+        <th>Puesto</th>
+        <th>Usuario</th>
+        <th>Puntaje</th>
+        <th>Fecha</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of puntajes; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ p.nombreusuario }}</td>
+        <td>{{ p.puntaje }}</td>
+        <td>{{ p.fecha | date:'short' }}</td>
+      </tr>
+      <tr *ngIf="puntajes.length === 0">
+        <td colspan="4">No hay puntajes para este juego.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

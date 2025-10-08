@@ -1,0 +1,27 @@
+<div class="chat-container">
+  <div class="chat-header">
+    <h2>Sala de Chat</h2>
+  </div>
+
+  <div class="chat-messages">
+    <div *ngFor="let mensaje of chatService.mensajes$ | async" 
+         class="mensaje" 
+         [ngClass]="{'mensaje-propio': mensaje.usuario_id === usuarioId}">
+      <div class="mensaje-header">
+        <span class="usuario">{{ mensaje.usuario }}</span>
+        <span class="fecha">{{ mensaje.fecha | date:'short' }}</span>
+      </div>
+      <div class="mensaje-texto">
+        {{ mensaje.texto }}
+      </div>
+    </div>
+  </div>
+
+  <div class="chat-input">
+    <input type="text" 
+           [(ngModel)]="nuevoMensaje" 
+           placeholder="Escribe un mensaje..."
+           (keyup.enter)="enviarMensaje()">
+    <button (click)="enviarMensaje()">Enviar</button>
+  </div>
+</div> 

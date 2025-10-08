@@ -1,0 +1,74 @@
+<form [formGroup]="formulario" class="form" (ngSubmit)="onSubmit()">
+  <h2 class="titulo">Ingresa</h2>
+
+  <div *ngIf="mensajeError" class="error-mensaje">
+    {{ mensajeError }}
+  </div>
+
+  <div *ngIf="mensajeExito" class="exito-mensaje">
+    {{ mensajeExito }}
+  </div>
+
+  <div class="seccion-input">
+    <label for="correoElectronico">Correo electrónico</label>
+    <input
+      placeholder="Correo electrónico"
+      formControlName="correoElectronico"
+      type="email"
+      name="correoElectronico"
+      id="correoElectronico"
+      class="input-texto"
+    />
+    <div class="error-mensaje" *ngIf="getError('correoElectronico')">
+      {{ getError("correoElectronico") }}
+    </div>
+  </div>
+
+  <div class="seccion-input">
+    <label for="clave">Contraseña</label>
+    <input
+      placeholder="Contraseña"
+      formControlName="clave"
+      type="password"
+      name="clave"
+      id="clave"
+      class="input-texto"
+    />
+    <div class="error-mensaje" *ngIf="getError('clave')">
+      {{ getError("clave") }}
+    </div>
+  </div>
+
+  <p class="texto-cuenta">
+    ¿No tenés una cuenta? <a routerLink="/registro">registrate</a>
+  </p>
+
+  <button
+    type="submit"
+    class="btn-enviar"
+    [disabled]="formulario.invalid || cargando"
+  >
+    {{ cargando ? "Ingresando..." : "Ingresa" }}
+  </button>
+
+  <button
+    *ngIf="necesitaConfirmacion"
+    type="button"
+    class="btn-secundario"
+    (click)="reenviarConfirmacion()"
+    [disabled]="cargando"
+  >
+    {{ cargando ? "Enviando..." : "Reenviar correo de confirmación" }}
+  </button>
+
+  <!-- Botón de acceso rápido -->
+  <div class="accesos-rapidos">
+    <button
+      type="button"
+      class="btn-acceso-rapido"
+      (click)="accesoRapido(accesosRapidos[0])"
+    >
+      Acceso Rápido
+    </button>
+  </div>
+</form>

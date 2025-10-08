@@ -1,0 +1,61 @@
+<div class="container">
+  <div>
+    <div class="card">
+      <div class="card-header">
+        <h2>Ahorcado</h2>
+      </div>
+      <div>
+        <div class="estadisticas">
+          <div class="estadistica-item">
+            <div class="estadistica-valor">{{ (estadoJuego$ | async)?.intentosRestantes ?? 0 }}</div>
+            <div class="estadistica-label">Intentos</div>
+          </div>
+          <div class="estadistica-item">
+            <div class="estadistica-valor">{{ (estadoJuego$ | async)?.letrasUsadas?.length ?? 0 }}</div>
+            <div class="estadistica-label">Letras Usadas</div>
+          </div>
+          <div class="estadistica-item">
+            <div class="estadistica-valor">{{ puntajeTotal }}</div>
+            <div class="estadistica-label">Puntaje Total</div>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="palabra-oculta">{{ (estadoJuego$ | async)?.palabraOculta }}</h3>
+        </div>
+
+        <!-- Teclado -->
+        <div class="teclado">
+          <button *ngFor="let letra of letras"
+                  class="letra-btn"
+                  [disabled]="(estadoJuego$ | async)?.letrasUsadas?.includes(letra) || 
+                            (estadoJuego$ | async)?.juegoGanado || 
+                            (estadoJuego$ | async)?.juegoPerdido"
+                  (click)="ahorcadoService.intentarLetra(letra)">
+            {{ letra }}
+          </button>
+        </div>
+
+        <div *ngIf="(estadoJuego$ | async)?.juegoGanado">
+          <div class="mensaje-resultado alert-success">
+            <h4>¡Felicitaciones! Has ganado.</h4>
+            <p>Has ganado {{ puntajePartida }} puntos</p>
+            <button class="btn-success" (click)="ahorcadoService.iniciarJuego()">
+              Jugar de nuevo
+            </button>
+          </div>
+        </div>
+
+        <div *ngIf="(estadoJuego$ | async)?.juegoPerdido">
+          <div class="mensaje-resultado alert-danger">
+            <h4>¡Game Over! Has perdido.</h4>
+            <p>La palabra era: {{ palabraActual }}</p>
+            <button class="btn-danger" (click)="ahorcadoService.iniciarJuego()">
+              Intentar de nuevo
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

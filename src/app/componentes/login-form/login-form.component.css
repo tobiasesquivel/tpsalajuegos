@@ -1,0 +1,23 @@
+.accesos-rapidos {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.btn-acceso-rapido {
+  background: var(--color-primario);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 16px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-acceso-rapido:hover {
+  background: var(--color-secundario);
+}

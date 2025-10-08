@@ -1,0 +1,16 @@
+.miniatura{
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    border: 2px solid rgba(0, 0, 0, 0.193);
+    box-shadow: 0 0px 40px rgba(0, 0, 0, 0.499);
+}
+
+.miniatura:hover{
+    cursor: pointer;
+}
+
+.nombre-juego{
+    text-align: center;
+    background-color: var(--color-secundario);
+}

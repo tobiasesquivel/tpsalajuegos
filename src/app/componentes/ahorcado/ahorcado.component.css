@@ -1,0 +1,225 @@
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  min-height: calc(100vh - 100px);
+  display: flex;
+  align-items: center;
+}
+
+.card {
+  background: var(--paneles);
+  box-shadow: 0 4px 20px var(--sombra-sutil);
+  border-radius: 12px;
+  padding: 24px;
+  border: none;
+}
+
+.card-header {
+  background: var(--color-primario);
+  color: #fff;
+  border-radius: 12px 12px 0 0;
+  padding: 16px 0;
+  text-align: center;
+}
+
+.titulo-juego {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.estadisticas {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 24px;
+}
+
+.estadistica-item {
+  text-align: center;
+}
+
+.estadistica-valor {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-primario);
+}
+
+.estadistica-label {
+  font-size: 0.9rem;
+  color: var(--texto-principal);
+}
+
+.ahorcado-imagen {
+  max-width: 180px;
+  margin: 0 auto;
+  display: block;
+}
+
+.palabra-oculta {
+  letter-spacing: 0.3em;
+  font-size: 2rem;
+  color: var(--color-primario);
+  font-weight: 600;
+}
+
+.teclado {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.letra-btn {
+  background: var(--color-primario);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 16px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.letra-btn:disabled {
+  background: #ccc;
+  color: #888;
+  cursor: not-allowed;
+}
+
+.alert-success {
+  background: var(--color-primario);
+  color: #fff;
+  border: none;
+}
+
+.alert-danger {
+  background: var(--color-secundario);
+  color: #fff;
+  border: none;
+}
+
+.btn-success, .btn-danger {
+  background: var(--color-primario);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 18px;
+  font-size: 1rem;
+  margin-top: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-danger {
+  background: var(--color-secundario);
+}
+
+/* Sin efectos de movimiento ni transform al pasar el mouse */
+.card:hover, .letra-btn:hover {
+  transform: none !important;
+}
+
+/* Mensajes de resultado */
+.mensaje-resultado {
+  padding: 25px;
+  border-radius: 15px;
+  margin-top: 25px;
+  text-align: center;
+  animation: fadeIn 0.5s ease;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.mensaje-resultado h4 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.mensaje-resultado p {
+  font-size: 1.2rem;
+  margin-bottom: 25px;
+  color: #666;
+}
+
+.mensaje-resultado button {
+  padding: 12px 30px;
+  font-size: 1.2rem;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.mensaje-resultado button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .teclado {
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+  }
+  
+  .estadisticas {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .estadistica-item {
+    width: 100%;
+  }
+  
+  .palabra-oculta {
+    font-size: 2.2rem;
+    letter-spacing: 8px;
+  }
+
+  .card-header h2 {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .teclado {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 6px;
+  }
+  
+  .letra-btn {
+    padding: 8px 4px;
+    font-size: 1.1rem;
+    min-width: 40px;
+    height: 40px;
+  }
+  
+  .palabra-oculta {
+    font-size: 1.8rem;
+    letter-spacing: 6px;
+  }
+
+  .card-header h2 {
+    font-size: 1.5rem;
+  }
+
+  .estadistica-valor {
+    font-size: 1.6rem;
+  }
+}

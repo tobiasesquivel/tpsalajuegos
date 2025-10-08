@@ -1,0 +1,16 @@
+.container-miniaturas> h2{
+    font-size: 3rem;
+    margin-top: 4rem;
+    color: var(--texto-principal);
+    text-align: center;
+}
+
+.juegos{
+    display: flex;
+    padding: 7% 20% 10% 20%;
+    justify-content: space-between;
+    row-gap: 50px;
+    flex-wrap: wrap;
+    font-size: 1.8rem;
+    color: var(--texto-principal);
+}

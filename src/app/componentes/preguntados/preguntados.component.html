@@ -1,0 +1,61 @@
+<div class="preguntados-panel">
+  <div class="card">
+    <div class="card-header">
+      <h2 class="titulo-juego">Preguntados - Los Simpsons</h2>
+    </div>
+    <div class="card-body">
+      <div class="estadisticas">
+        <div class="estadistica-item">
+          <div class="estadistica-valor">{{ (estadoJuego$ | async)?.puntaje ?? 0 }}</div>
+          <div class="estadistica-label">Puntaje</div>
+        </div>
+        <div class="estadistica-item">
+          <div class="estadistica-valor">{{ (estadoJuego$ | async)?.intentosRestantes ?? 0 }}</div>
+          <div class="estadistica-label">Intentos</div>
+        </div>
+      </div>
+
+      <ng-container *ngIf="(estadoJuego$ | async)?.juegoTerminado; else juegoActivo">
+        <div class="mensaje-resultado resultado">
+          <h4>¡Juego Terminado!</h4>
+          <p>Tu puntaje final es: {{ (estadoJuego$ | async)?.puntaje }}</p>
+          <button class="btn btn-success mt-2" (click)="preguntadosService.iniciarJuego()">
+            Jugar de nuevo
+          </button>
+        </div>
+      </ng-container>
+
+      <ng-template #juegoActivo>
+        <div class="pregunta-container" *ngIf="(estadoJuego$ | async)?.preguntaActual">
+          <div class="imagen-container" style="text-align:center; margin-bottom:16px;">
+            <img [src]="(estadoJuego$ | async)?.preguntaActual?.imagen" 
+                 alt="Imagen de la pregunta"
+                 class="pregunta-imagen"
+                 (error)="onImageError($event)"
+                 (load)="onImageLoad()"
+                 loading="lazy"
+                 style="max-width:180px; border-radius:8px; box-shadow:0 2px 8px var(--sombra-sutil);">
+            <div class="imagen-loading" *ngIf="!imagenCargada">
+              <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Cargando...</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pregunta -->
+          <div class="pregunta">
+            {{ (estadoJuego$ | async)?.preguntaActual?.pregunta }}
+          </div>
+
+          <div class="opciones">
+            <button *ngFor="let opcion of (estadoJuego$ | async)?.preguntaActual?.opciones"
+                    class="opcion-btn"
+                    (click)="seleccionarRespuesta(opcion)">
+              {{ opcion }}
+            </button>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>

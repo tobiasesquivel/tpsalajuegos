@@ -1,0 +1,16 @@
+.full-vista-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100dvw;
+    height: 100dvh;
+    background: #3F51B5;
+    background: linear-gradient(180deg,rgba(63, 81, 181, 1) 0%, rgba(255, 255, 255, 1) 100%);
+    
+}
+
+.form-container {
+    width: 100%;
+    background-color: var(--fondo);
+    border-radius: 10px;
+}

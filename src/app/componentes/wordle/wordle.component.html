@@ -1,0 +1,46 @@
+<div class="wordle-container">
+  <div class="wordle-header">
+    <h2>Wordle - Tecnología</h2>
+  </div>
+  
+  <div class="wordle-content">
+    <!-- Tablero de juego -->
+    <div class="tablero">
+      <ng-container *ngFor="let intento of (estadoJuego$ | async)?.intentos; let i = index">
+        <div class="fila">
+          <ng-container *ngFor="let letra of intento; let j = index">
+            <div class="casilla" [class]="obtenerClaseEstado((estadoJuego$ | async)?.estadoIntentos?.[i]?.[j] || 'vacio')">
+              {{ letra }}
+            </div>
+          </ng-container>
+        </div>
+      </ng-container>
+    </div>
+
+    <!-- Teclado virtual -->
+    <div class="teclado">
+      <div class="fila-teclado" *ngFor="let fila of teclado">
+        <button *ngFor="let tecla of fila"
+                class="tecla"
+                [class.tecla-especial]="tecla === 'ENTER' || tecla === '⌫'"
+                (click)="presionarTecla(tecla)">
+          {{ tecla }}
+        </button>
+      </div>
+    </div>
+
+    <!-- Mensaje de resultado -->
+    <div class="mensaje-resultado" *ngIf="(estadoJuego$ | async)?.juegoTerminado">
+      <h4>{{ (estadoJuego$ | async)?.victoria ? '¡Felicitaciones!' : '¡Inténtalo de nuevo!' }}</h4>
+      <p *ngIf="(estadoJuego$ | async)?.victoria">
+        Puntaje: {{ (estadoJuego$ | async)?.puntaje }}
+      </p>
+      <p *ngIf="!(estadoJuego$ | async)?.victoria">
+        La palabra era: {{ (estadoJuego$ | async)?.palabraSecreta }}
+      </p>
+      <button class="btn-nuevo-juego" (click)="wordleService.iniciarJuego()">
+        Jugar de nuevo
+      </button>
+    </div>
+  </div>
+</div>

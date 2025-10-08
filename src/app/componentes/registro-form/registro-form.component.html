@@ -1,0 +1,52 @@
+<form [formGroup]="formulario" class="form" (ngSubmit)="onSubmit()">
+  <h2 class="titulo">Registrate</h2>
+
+  <button (click)="this.crearAdmin()">Crear Admin</button>
+
+  <div *ngIf="mensajeError" class="error-mensaje">
+    {{ mensajeError }}
+  </div>
+
+  <app-form-input
+    [formulario]="formulario"
+    label="Correo electrónico"
+    placeHolder="Correo electrónico"
+    controlName="correoElectronico"
+    type="email"
+    [errorMessage]="getError('correoElectronico')"
+  >
+  </app-form-input>
+
+  <app-form-input
+    [formulario]="formulario"
+    label="Nombre de usuario"
+    placeHolder="Nombre de usuario"
+    controlName="nombreUsuario"
+    type="text"
+    [errorMessage]="getError('nombreUsuario')"
+  >
+  </app-form-input>
+
+  <app-form-input
+    [formulario]="formulario"
+    label="Contraseña"
+    placeHolder="Contraseña"
+    controlName="clave"
+    type="password"
+    [errorMessage]="getError('clave')"
+  >
+  </app-form-input>
+
+  <p class="texto-cuenta">¿Ya tenés una cuenta? <a routerLink="/login">ingresa</a></p>
+
+  <button
+    type="submit"
+    class="btn-enviar"
+    [disabled]="formulario.invalid || cargando"
+  >
+    {{ cargando ? 'Registrando...' : 'Registrarse' }}
+  </button>
+
+
+
+</form>
